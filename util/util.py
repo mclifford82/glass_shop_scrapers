@@ -8,11 +8,12 @@ def write_product_to_file(product):
   filename = f'stokedct_{datestr}.txt'
   if not os.path.exists(filename):
     with open(filename, 'w', newline='\n') as newfile:
-      newfile.write('artist,name,img,link,price\n')
+      newfile.write('shop_name,artist,name,img,link,price\n')
 
   with open(filename, 'a+', newline='\n') as csvfile:
     writer = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     writer.writerow([
+      product['shop'],
       product['artist'],
       product['name'],
       product['img'],
