@@ -9,7 +9,10 @@ from util.artists import artists
 #   for artist in artists
 #]
 
-url_list = ['https://stokedct.com/collections/steve-h',]
+url_list = [
+  'https://stokedct.com/collections/steve-h',
+  'https://stokedct.com/collections/babedrienne',
+]
 
 product_list = []
 
@@ -17,6 +20,14 @@ for url in url_list:
   artist_page = urlopen(url)
   artist_html = artist_page.read().decode('utf-8')
   artist_soup = BeautifulSoup(artist_html, 'html.parser')
+
+  product_count_text = artist_soup.select('div.number-of-products.pull-right')[0].text
+  product_count = int(re.search(r'(\d+)\s.+', product_count_text, re.I).group(1))
+
+  print(f'{url} - {product_count} product(s) found.')
+
+  if product_count == 0:
+    continue
 
   products = artist_soup.find_all("div", {"class": "product_inside"})
   
@@ -46,4 +57,4 @@ for url in url_list:
       'old_price': p_item_old_price,
     }
 
-    print(item_dict)
+    #print(item_dict)
