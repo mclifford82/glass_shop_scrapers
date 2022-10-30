@@ -13,7 +13,7 @@ def write_product_to_file(product):
   with open(filename, 'a+', newline='\n') as csvfile:
     writer = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     writer.writerow([
-      product['shop'],
+      product['shop_name'],
       product['artist'],
       product['name'],
       product['img'],

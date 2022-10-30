@@ -12,7 +12,7 @@ page = urlopen(base_url)
 html = page.read().decode('utf-8')
 soup = BeautifulSoup(html, 'html.parser')
 
-product_count_text = s.select('div.number-of-products.pull-right')[0].text
+product_count_text = soup.select('div.number-of-products.pull-right')[0].text
 product_count = int(re.search(r'(\d+)\s.+', product_count_text, re.I).group(1))
 page_count = round(product_count / 36) + 1
 
