@@ -4,7 +4,6 @@ import os.path
 from datetime import date
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
-from util.util import write_product_to_file
 
 url_list = [
   'https://investinheadies.com/collections/recycler',
