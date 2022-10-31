@@ -5,6 +5,7 @@ This is a collection of BeautifulSoup based web scrapers that are designed to ga
 ### Current Supported Shops
 - Stoked CT (https://stokedct.com)
 - InvestInHeadies (https://investinheadies.com)
+- NVS Glassworks (https://store.nvsglassworks.com)
 
 ### Shops I'm Working On
-- NVS Glassworks (https://store.nvsglassworks.com)
+- Send me suggestions! Hit me up on Twitter @KatMakes69
