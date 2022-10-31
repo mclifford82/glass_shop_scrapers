@@ -3,7 +3,7 @@ import csv
 import os.path
 from datetime import date
 from bs4 import BeautifulSoup
-from urllib.request import urlopen
+from urllib.request import urlopen, Request
 
 url_list = [
   'https://investinheadies.com/collections/recycler',
@@ -26,6 +26,17 @@ url_list = [
   #'https://investinheadies.com/collections/apparel', 
   #'https://investinheadies.com/collections/stickers'
 ]
+
+header = {
+  'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
+  'AppleWebKit/537.11 (KHTML, like Gecko) '
+  'Chrome/23.0.1271.64 Safari/537.11',
+  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+  'Accept-Encoding': 'none',
+  'Accept-Language': 'en-US,en;q=0.8',
+  'Connection': 'keep-alive'
+}
 
 def write_product_to_file(product):
   """Convert dictionary to csv lines"""
@@ -58,7 +69,7 @@ for url in url_list:
   for page_num in range(2):
     try:
       page_url = url + f'?page={page_num+1}'
-      page_raw = urlopen(page_url)  
+      page_raw = urlopen(Request(page_url, headers=header))  
       page_html = page_raw.read().decode('utf-8')
       page_soup = BeautifulSoup(page_html, 'html.parser')
     except:

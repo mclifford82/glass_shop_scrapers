@@ -1,14 +1,25 @@
 import re
-from urllib.request import urlopen
+from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup
 from util.util import write_product_to_file
+
+header = {
+  'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
+  'AppleWebKit/537.11 (KHTML, like Gecko) '
+  'Chrome/23.0.1271.64 Safari/537.11',
+  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+  'Accept-Encoding': 'none',
+  'Accept-Language': 'en-US,en;q=0.8',
+  'Connection': 'keep-alive'
+}
 
 # Cycle through pages, collecting info from each item and then outputting to a csv file
 count = 0
 base_url = 'https://stokedct.com/collections/all'
 
 # Access first page to get the total item count, divided by 36 rounded up to get the range(1, X, 1) value
-page = urlopen(base_url)
+page = urlopen(Request(base_url, headers=header))
 html = page.read().decode('utf-8')
 soup = BeautifulSoup(html, 'html.parser')
 
